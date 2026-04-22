@@ -12,10 +12,14 @@ app.post("/users", (req, res) => {
   const { name, email } = req.body
 
   if (!name || !email) {
-    return res.status(400).json({ message: "Campos obrigatórios não foram preenchidos." })
+    message = "Campos obrigatórios não foram preenchidos."
+    console.log(message)
+    return res.status(400).json({ message })
   }
 
   if (users.find(user => user.email.toLowerCase() === email.toLowerCase())) {
+    message = "E-mail já cadastrado."
+    console.log(message)
     return res.status(409).json({ message: "E-mail já cadastrado." })
   }
 
